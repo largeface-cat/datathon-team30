@@ -18,6 +18,14 @@ ow_rate_adults = obesity_data.get('owRateAdults')
 obesity_rate_children = obesity_data.get('obRateKids')
 ow_rate_children = obesity_data.get('owRateKids')
 
+location = pd.read_csv('Nutrition_Physical_Activity_and_Obesity_Data.csv')
+location = location['LocationDesc'].unique()
+geo = pd.read_csv('Nutrition_Physical_Activity_and_Obesity_Data.csv')
+geo = geo['GeoLocation'].unique()
+
+mapping_dict_loc = dict(zip(location,geo))
+
+
 income_ob_data_adult = {}
 # add adult obe data
 for state,df in obesity_rate_adults.items():
@@ -25,6 +33,7 @@ for state,df in obesity_rate_adults.items():
     df.rename(columns={'Data_Value': 'adult_obesity_Value','Income':'adult_Income','StratificationCategoryId1':'adult_StratificationCategoryId1','StratificationID1':'adult_StratificationID1'}, inplace=True)
     if len(df.Year.unique()) > 10:
         income_ob_data_adult[state] = df[['Year','adult_obesity_Value','adult_Income','adult_StratificationCategoryId1','adult_StratificationID1']]
+        
 
 
 
@@ -43,10 +52,12 @@ for state in household_income_mean:
         income_ob_data_adult[state]['Median household income (dollars)'] = income_ob_data_adult[state]['Year'].map(mapping_dict)
 
 
+
 # convert dict into df
 income_ob_df = pd.DataFrame(columns = ['Year','adult_obesity_Value','adult_Income','adult_StratificationCategoryId1','adult_StratificationID1','Mean household income (dollars)','Median household income (dollars)','LocationDesc'])
 for key,df in income_ob_data_adult.items():
     df['LocationDesc'] = [key] * df.shape[0]
+    df['geolocation'] = df['LocationDesc'].map(mapping_dict_loc)
     income_ob_df = pd.concat([income_ob_df,df])
 
 income_ob_df.to_csv('adult_income_obesity.csv',index = False)
@@ -70,7 +81,7 @@ for state in household_income_mean:
     signal = True if income_ob_data_child.get(state) is not None else False 
     if signal:
         mapping_dict = dict(zip(family_income_mean[state].get('Year'),family_income_mean[state].get("Estimate")))
-        income_ob_data_child[state]['Mean family income (dollars)'] = income_ob_data_child[state]['Year'].map(mapping_dict)
+        
 
 # add family_income_median_Data_to_df
 for state in household_income_mean:
@@ -78,10 +89,12 @@ for state in household_income_mean:
     if signal:
         mapping_dict = dict(zip(family_income_median[state].get('Year'),family_income_median[state].get("Estimate")))
         income_ob_data_child[state]['Median family income (dollars)'] = income_ob_data_child[state]['Year'].map(mapping_dict)
+        income_ob_data_adult[state]['geolocation'] = income_ob_data_adult[state]['LocationDesc'].map(mapping_dict_loc)
 
 income_ob_df = pd.DataFrame(columns = ['Year','child_obesity_Value','child_StratificationCategoryId1','child_StratificationID1','Grade','Gender','Mean household income (dollars)','Median household income (dollars)','LocationDesc'])
 for key,df in income_ob_data_child.items():
     df['LocationDesc'] = [key] * df.shape[0]
+    df['geolocation'] = df['LocationDesc'].map(mapping_dict_loc)
     income_ob_df = pd.concat([income_ob_df,df])
 
 income_ob_df.to_csv('child_income_obesity.csv',index = False)
