@@ -38,8 +38,13 @@ for state in household_income_mean:
         income_ob_data[state]['Median household income (dollars)'] = income_ob_data[state]['Year'].map(mapping_dict)
 
 
-# convert dict into df,o
+# convert dict into df
+income_ob_df = pd.DataFrame(columns = ['Year','Data_Value','Income','StratificationCategoryId1','StratificationID1','Mean household income (dollars)','Median household income (dollars)','LocationDesc'])
+for key,df in income_ob_data.items():
+    df['LocationDesc'] = [key] * df.shape[0]
+    income_ob_df = pd.concat([income_ob_df,df])
 
+income_ob_df.to_csv('income_obesity.csv',index = False)
 
 
 
