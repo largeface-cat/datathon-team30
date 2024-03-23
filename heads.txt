@@ -1,0 +1,77 @@
+               Label (Grouping)           Category    State   Estimate  \
+0             EMPLOYMENT STATUS             Header  Alabama        NaN   
+1  Population 16 years and over  EMPLOYMENT STATUS  Alabama  3,714,504   
+
+  Margin of Error    Percent Percent Margin of Error  Year  
+0             NaN        NaN                     NaN  2010  
+1          ±1,588  3,714,504                     (X)  2010  
+    Date-Time       Value             Unit Commodity
+0  2024-01-01  203.879130  Cents per Pound    Coffee
+1  2023-12-01  210.310476  Cents per Pound    Coffee
+    Date-Time   Open   High      Low  Close   Volume Ticker_Symbol
+0  2024-02-20  29.09  29.71  29.0001  29.44  2673889           HRL
+1  2024-02-16  29.01  29.17  28.7650  28.99  5655091           HRL
+       Date  Year  Month            Unit Animal  Weight Type_Of_Meat
+0  Dec-2023  2023     12  Million Pounds   Beef  457.41     Red Meat
+1  Nov-2023  2023     11  Million Pounds   Beef  445.67     Red Meat
+       Date  Year  Month            Unit Production Animal  \
+0  Dec-2023  2023     12  Million Pounds   2,189.80   Beef   
+1  Nov-2023  2023     11  Million Pounds   2,280.90   Beef   
+
+  Commercial or Federally Inspected Type of Meat  
+0                        Commercial     Red Meat  
+1                        Commercial     Red Meat  
+       Date  Year  Month        Unit  Animal     Count  \
+0  Dec-2023  2023     12  1,000 Head  Cattle  2,593.40   
+1  Nov-2023  2023     11  1,000 Head  Cattle  2,729.90   
+
+  Commercial_Or_Federally_Inspected Type_Of_Meat  
+0                        Commercial     Red Meat  
+1                        Commercial     Red Meat  
+       Date  Year  Month                      Unit  Animal    Weight  \
+0  Dec-2023  2023     12  Average Weight in Pounds  Cattle  1,401.00   
+1  Nov-2023  2023     11  Average Weight in Pounds  Cattle  1,387.00   
+
+  Commercial_Or_Federally_Inspected Live_Or_Dressed Type_Of_Meat  
+0                        Commercial            Live     Red Meat  
+1                        Commercial            Live     Red Meat  
+   YearStart  YearEnd LocationAbbr LocationDesc  \
+0       2019     2019           AK       Alaska   
+1       2019     2019           AZ      Arizona   
+
+                                Datasource                    Class  \
+0  Youth Risk Behavior Surveillance System        Physical Activity   
+1  Youth Risk Behavior Surveillance System  Obesity / Weight Status   
+
+                          Topic  \
+0  Physical Activity - Behavior   
+1       Obesity / Weight Status   
+
+                                            Question  Data_Value_Unit  \
+0  Percent of students in grades 9-12 who achieve...              NaN   
+1  Percent of students in grades 9-12 who have ob...              NaN   
+
+  Data_Value_Type  ...                        GeoLocation  ClassID TopicID  \
+0           Value  ...  (64.845079957001, -147.722059036)       PA     PA1   
+1           Value  ...      (34.86597028, -111.763811277)      OWS    OWS1   
+
+  QuestionID  DataValueTypeID  LocationID  StratificationCategory1  \
+0       Q048            VALUE           2           Race/Ethnicity   
+1       Q038            VALUE           4                    Total   
+
+  Stratification1 StratificationCategoryId1 StratificationID1  
+0           Asian                      RACE           RACEASN  
+1           Total                       OVR           OVERALL  
+
+[2 rows x 34 columns]
+  Symbol     AssetType                                 Name  \
+0    QSR  Common Stock  Restaurant Brands International Inc   
+1    ALG  Common Stock                      Alamo Group Inc   
+
+                                         Description            Sector  \
+0  Restaurant Brands International Inc. owns, ope...  TRADE & SERVICES   
+1  Alamo Group Inc. designs, manufactures, distri...        TECHNOLOGY   
+
+                     Industry  
+0        RETAIL-EATING PLACES  
+1  FARM MACHINERY & EQUIPMENT  
