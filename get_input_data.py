@@ -70,14 +70,14 @@ for state in household_income_mean:
     signal = True if income_ob_data_child.get(state) is not None else False 
     if signal:
         mapping_dict = dict(zip(family_income_mean[state].get('Year'),family_income_mean[state].get("Estimate")))
-        income_ob_data_child[state]['Mean household income (dollars)'] = income_ob_data_child[state]['Year'].map(mapping_dict)
+        income_ob_data_child[state]['Mean family income (dollars)'] = income_ob_data_child[state]['Year'].map(mapping_dict)
 
 # add family_income_median_Data_to_df
 for state in household_income_mean:
     signal = True if income_ob_data_child.get(state) is not None else False 
     if signal:
         mapping_dict = dict(zip(family_income_median[state].get('Year'),family_income_median[state].get("Estimate")))
-        income_ob_data_child[state]['Median household income (dollars)'] = income_ob_data_child[state]['Year'].map(mapping_dict)
+        income_ob_data_child[state]['Median family income (dollars)'] = income_ob_data_child[state]['Year'].map(mapping_dict)
 
 income_ob_df = pd.DataFrame(columns = ['Year','child_obesity_Value','child_StratificationCategoryId1','child_StratificationID1','Grade','Gender','Mean household income (dollars)','Median household income (dollars)','LocationDesc'])
 for key,df in income_ob_data_child.items():
