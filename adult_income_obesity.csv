@@ -1,4 +1,4 @@
-Year,Data_Value,Income,StratificationCategoryId1,StratificationID1,Mean household income (dollars),Median household income (dollars),LocationDesc
+Year,adult_obesity_Value,adult_Income,adult_StratificationCategoryId1,adult_StratificationID1,Mean household income (dollars),Median household income (dollars),LocationDesc
 2011,29.3,,AGEYR,AGEYR65PLUS,"84,767","69,014",Alaska
 2011,22.7,Data not reported,INC,INCNR,"84,767","69,014",Alaska
 2011,19.8,,AGEYR,AGEYR1824,"84,767","69,014",Alaska
