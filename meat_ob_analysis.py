@@ -11,12 +11,15 @@ def select_df_contain_content(df,column,content):
 # add new feature
 s_p_data = pd.read_csv('Broilers_store_prod.csv')
 s_p_data.dropna(inplace = True)
-s_p_data = s_p_data.loc[((2021 >= s_p_data['Year']) & (s_p_data['Year'] >= 2011)),:]
-
+s_p_data = s_p_data.loc[((2021 >= s_p_data['Year']) & (s_p_data['Year'] >= 2010)),:]
 
 sold_data = s_p_data['Storage'].shift(1) - s_p_data['Storage'] + s_p_data['Production']
 sold_data /= 133
 sold_data = sold_data.to_list()[::-1]
+sold_data = np.array(pd.Series(sold_data).rolling(window=12).mean())
+s_p_data['sold_average'] = sold_data
+s_p_data.dropna(inplace=True)
+
 # s_p_data['Sold'] = sold_data
 # s_p_data.dropna(inplace=True)
 # print(s_p_data)
@@ -36,13 +39,15 @@ for ind in range(len(income_list)):
         if i < len(ob)-1:
             d = (ob[i+1] - ob[i])/12
             tmp+= [ob[i]+n*d for n in range(12)]
-    df = pd.DataFrame( {'Date':s_p_data['Date'],'obesity':tmp,'sold':sold_data})
+    
+    df = pd.DataFrame( {'Date':s_p_data['Date'],'obesity':tmp,'sold':s_p_data['sold_average']})
+    
+    # df.dropna(inplace=True)
     model = smf.ols(formula='obesity ~ sold', data=df).fit()
     print(income_list[ind])
     print(model.summary())
-    plt.plot(tmp)
-    
-    plt.plot(sold_data)
+    plt.plot(df['obesity'])
+    plt.plot(df['sold'])
     plt.title(income_list[ind])
 
     plt.show()
@@ -50,8 +55,6 @@ for ind in range(len(income_list)):
 
 """
 sold_data = s_p_data['Sold']/1000
-
-
 slaughter_data = pd.read_csv('./Broilers_slaughter.csv')
 slaughter_data = slaughter_data.loc[((2023 > slaughter_data['Year']) & (slaughter_data['Year'] >= 2011)),:]
 # slaughter_data = slaughter_data.groupby(['Year']).sum()[['Count']]
