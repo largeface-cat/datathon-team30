@@ -28,6 +28,7 @@ def remove_outliers(X):
 # 1. Load the data
 beef_list = ['Cattle','Steers','Heifers'] # beef list
 chicken_list = ['Broilers', 'Other chickens']
+store_prod_data = pd.read_csv('Broilers_slaughter.csv')
 
 # 2. production data 
 
@@ -97,6 +98,9 @@ chicken = select_df_contain_content(meat_slaughter,'Animal','Broilers')
 chicken = select_df_contain_content(chicken,'Commercial_Or_Federally_Inspected','Federally Inspected')
 
 chicken.to_csv('Broilers_slaughter.csv',index=False)
+
+
+
 
 
 
