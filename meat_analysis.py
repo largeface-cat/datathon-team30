@@ -75,8 +75,21 @@ for key in dic.keys():
     plot_amount(dic[key])
 
 chicken = select_df_contain_content(meat_slaughter,'Type_Of_Meat','Poultry')
+beef = select_df_contain_content(meat_slaughter,'Type_Of_Meat','Red Meat')
+
+sum_chicken = chicken.groupby(['Date'])['Count'].sum()
+sum_beef = beef.groupby(['Date'])['Count'].sum()
 
 
+
+# 4. plot the data
+fig,ax = plt.subplots(1,2,figsize = (12,5))
+ax[0].plot(sum_chicken.index, sum_chicken.values)
+ax[0].set_title('Chicken Slaughter Count')
+
+ax[1].plot(sum_beef.index, sum_beef.values)
+ax[1].set_title('Beef Slaughter Count')
+plt.show()
 
 
 
