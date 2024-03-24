@@ -92,6 +92,13 @@ ax[1].set_title('Beef Slaughter Count')
 plt.show()
 
 
+# save Broilers data
+chicken = select_df_contain_content(meat_slaughter,'Animal','Broilers')
+chicken = select_df_contain_content(chicken,'Commercial_Or_Federally_Inspected','Federally Inspected')
+
+chicken.to_csv('Broilers_slaughter.csv',index=False)
+
+
 
 
 
